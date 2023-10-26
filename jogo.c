@@ -6,7 +6,37 @@ char* gerarPalavraAleatoria() {
 		"computador",
 		"teclado",
 		"janela",
-		"programacao"
+		"programacao",
+		"abacaxi",
+		"girassol",
+		"computador",
+		"biblioteca",
+		"elefante",
+		"chocolate",
+		"astronomia",
+		"diamante",
+		"escorregador",
+		"universo",
+		"paralelepípedo",
+		"ventilador",
+		"caminhão",
+		"estrela",
+		"cachoeira",
+		"borboleta",
+		"esqueleto",
+		"astronomo",
+		"gramática",
+		"lamparina",
+		"pirâmide",
+		"misterioso",
+		"teclado",
+		"enciclopédia",
+		"espinhaço",
+		"retângulo",
+		"planetário",
+		"dinossauro",
+		"orquídea",
+		"palpiteiro"
 	};
 
 	int numeroDePalavras = sizeof(palavras) / sizeof(palavras[0]);
@@ -24,27 +54,32 @@ void escolherPalavra(char with[]) {
 
 int main() {
 	char palavra[40];
+	char* result = gerarPalavraAleatoria();
 	int maxErros = 6;
 	int errosAtuais = 0;
-	char* result = gerarPalavraAleatoria();
 
 	escolherPalavra(palavra);
 
 	while (errosAtuais < maxErros) {
-		if (strcmp(palavra, result) != 0) {  // Se as palavras são diferentes
-				printf("Continue tentando!\n");
-				errosAtuais++;
-				if (errosAtuais == 5) {
-					printf("Sua última chance!\n");
-				}
-				escolherPalavra(palavra);
-		} else {
-				printf("A palavra escolhida foi: %s\n", palavra);
-			break;
+		for (int i = 1; i < 5;) {
+			if (strcmp(palavra, result) != 0) {
+					printf("Continue tentando! %d Tentativa\n", i);
+					errosAtuais++;
+					i++;
+					if (errosAtuais == 5) {
+						printf("Sua última chance!\n");
+					}
+			} else {
+					printf("A palavra escolhida foi: %s\n", palavra);
+					break;  // Sair do loop for
+			}
+			escolherPalavra(palavra);
 		}
-	}
-	if (errosAtuais == maxErros) {
-		printf("Você atingiu o número máximo de tentativas!\n");
+
+		if (errosAtuais == maxErros) {
+			printf("Você atingiu o número máximo de tentativas!\n");
+			break;  // Sair do loop while
+		}
 	}
 return 0;
 }
