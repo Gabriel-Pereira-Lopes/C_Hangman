@@ -26,26 +26,25 @@ int main() {
 	char palavra[40];
 	int maxErros = 6;
 	int errosAtuais = 0;
-	char result[40] ;
-
-	gerarPalavraAleatoria() = result;
+	char* result = gerarPalavraAleatoria();
 
 	escolherPalavra(palavra);
 
-	while (errosAtuais < maxErros)
-	{
-		if (palavra != result){
-			printf("continue tentando!");
-			errosAtuais++;
-			escolherPalavra(palavra);
-		}
-			if (errosAtuais==5){
-			printf("Sua ultima chance!");
-			}
-		else if (palavra == result){
-			printf("A palavra escolhida foi: %s\n", palavra);
+	while (errosAtuais < maxErros) {
+		if (strcmp(palavra, result) != 0) {  // Se as palavras são diferentes
+				printf("Continue tentando!\n");
+				errosAtuais++;
+				if (errosAtuais == 5) {
+					printf("Sua última chance!\n");
+				}
+				escolherPalavra(palavra);
+		} else {
+				printf("A palavra escolhida foi: %s\n", palavra);
+			break;
 		}
 	}
-
-	return 0;
+	if (errosAtuais == maxErros) {
+		printf("Você atingiu o número máximo de tentativas!\n");
+	}
+return 0;
 }
